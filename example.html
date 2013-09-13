@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf8'>
+  <title>select-reflect</title>
+  <link rel='stylesheet' href='build/build.css'>
+  <script src='build/build.js'></script>
+
+  <style>
+    body {
+      padding: 50px;
+      font-family: 'Helvetica Neue', 'Lucida Grande', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .select {
+      max-width: 300px;
+      margin-top: 30px;
+    }
+
+    .select .select-option.highlight {
+      color: rgb(63, 191, 191);
+    }
+
+    .select .select-option:hover {
+      color: rgb(63, 191, 191);
+    }
+
+    .select .pillbox li {
+      background: #fff;
+      padding: 2px 6px;
+      font-size: 11px;
+      border: 1px solid #ddd;
+      margin: 3px;
+    }
+
+    .select .pillbox li a {
+      color: rgb(63, 191, 191);
+      text-decoration: none;
+      padding: 0 0 0 6px ;
+    }
+
+    *[hidden] {
+      display: none !important;
+    }
+
+    .select-dropdown input {
+      border: 0 none;
+      display: block;
+      border-bottom: 1px solid #ddd;
+      padding: 6px;
+      width: 100%;
+    }
+
+    input:focus {
+      outline: 0;
+    }
+
+    section {
+      margin: 0 0 80px 0;
+      vertical-align: middle;
+    }
+
+    .select {
+      display: block;
+      width: 150px;
+    }
+
+    select {
+      display: block;
+      display: inline-block;
+      vertical-align: top;
+      width: 150px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <section>
+    <select>
+      <option>Select a language...</option>
+      <option value='js'>Javascript</option>
+      <option value='go'>Google Go</option>
+      <option value='lua'>Lua</option>
+    </select>
+  </section>
+
+  <section>
+    <select multiple>
+      <option>Select languages...</option>
+      <option value='js'>Javascript</option>
+      <option value='go'>Google Go</option>
+      <option value='lua'>Lua</option>
+    </select>
+  </section>
+
+  <script>
+    var els = document.querySelectorAll('select');
+    var reflect = require('select-reflect');
+    var select = require('select');
+    var each = require('each');
+
+    each(els, function(nativ){
+      el = reflect(nativ, select()).el;
+      nativ.parentNode.insertBefore(el, nativ.nextSibling);
+    })
+
+  </script>
+
+</body>
+</html>

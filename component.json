@@ -1,0 +1,16 @@
+{
+  "name": "select-reflect",
+  "repo": "yields/select-reflect",
+  "description": "Reflect native <select> to yields/select instance.",
+  "version": "0.0.1",
+  "keywords": ["select-reflect"],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": ["index.js"],
+  "dependencies": {
+    "component/each": "*"
+  },
+  "development": {
+    "yields/select": "*"
+  }
+}
