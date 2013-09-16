@@ -3,6 +3,7 @@
  * dependencies
  */
 
+var query = require('query');
 var each = require('each');
 
 /**
@@ -31,6 +32,7 @@ function reflect(el, select){
     label = els[0];
     select.label(els[0].textContent);
     hasLabel = true;
+    els.shift();
   }
 
   // multiple
@@ -38,7 +40,6 @@ function reflect(el, select){
 
   // add
   each(els, function(opt, i){
-    if (0 == i && hasLabel) return;
     var name = opt.textContent;
     var value = opt.getAttribute('value');
     var selected = opt.selected;
@@ -46,14 +47,29 @@ function reflect(el, select){
     if (selected) select.select(name);
   });
 
-  // changes
-  select.on('change', function(){
-    each(select.options, function(opt, i){
-      if (hasLabel) i += 1;
-      els[i].selected = opt.selected;
-    });
+  // selected
+  select.on('select', function(opt){
+    option(opt, el).selected = true;
+  });
+
+  // deselect
+  select.on('deselect', function(opt){
+    option(opt, el).selected = false
   });
 
   // all done
   return select;
+}
+
+/**
+ * Get an option with `val`.
+ *
+ * @param {String} val
+ * @param {Element} ctx
+ * @return {Element|Object}
+ * @api private
+ */
+
+function option(opt, ctx){
+  return query('[value="' + opt.value + '"]', ctx) || {};
 }
