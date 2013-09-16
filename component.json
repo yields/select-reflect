@@ -2,7 +2,7 @@
   "name": "select-reflect",
   "repo": "yields/select-reflect",
   "description": "Reflect native <select> to yields/select instance.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "keywords": ["select-reflect"],
   "license": "MIT",
   "main": "index.js",
